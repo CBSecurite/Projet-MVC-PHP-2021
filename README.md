@@ -1,7 +1,7 @@
 ﻿# Projet-MVC-PHP-2021
- <hr>
- <h4>2021-13-09 : beta1-v0.2.0-dev</h4>  
 
+ <hr>
+ <h4>2021-13-09 : beta1-v0.2.0-dev</h4>
  <hr>
 
   Information des versions :
@@ -14,6 +14,11 @@
   Information systeme :
   - PHP : 8.0.8
   - PHPMyAdmin : 5.1.1
+
+  Mises a jour :
+  - Mysql BDD : Création des tables staff
+  - Noyau Core : Ajout de certains commentaires oubliés.
+  - Noyau App : Ajout des Entity, interface, repository et des controllers du staff
 
  <hr>
  <h4>2021-13-09 : First Commit</h4>
