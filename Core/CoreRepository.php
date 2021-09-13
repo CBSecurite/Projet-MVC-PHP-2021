@@ -10,7 +10,10 @@ abstract class CoreRepository extends CoreRepositoryRequest
 	// List of Traits //
 	// ########################################################################################################## //
 	
+	# Date
 	use \Core\Repository\Trait\CoreRepositoryTraitDate;
+	
+	# Table
 	use \Core\Repository\Trait\CoreRepositoryTraitTable;
 	
 	// ########################################################################################################## //
@@ -34,6 +37,8 @@ abstract class CoreRepository extends CoreRepositoryRequest
 	// ########################################################################################################## //
 	
 	/**
+	 * The function "connectPDO"
+	 *
 	 * @return PDO
 	 */
 	final public function connectPDO(): PDO

@@ -1,12 +1,16 @@
 <?php
 namespace Core\Repository;
 
-use Core\CoreBdd;
 use PDO;
 
 abstract class CoreRepositoryRequest
 {
-	
+	/**
+	 * The function "setDatas"
+	 *
+	 * @param array $datas
+	 * @return $this
+	 */
 	final public function setDatas(array $datas): self
 	{
 		foreach ($datas as $key => $value) {
@@ -16,6 +20,13 @@ abstract class CoreRepositoryRequest
 		return $this;
 	}
 	
+	/**
+	 * The function "findAll"
+	 *
+	 * @param array|null $order
+	 * @param array|null $limit
+	 * @return array
+	 */
 	final public function findAll(array|null $order = null, array|null $limit = null):  array
 	{
 		$order ? $vuOrder = $order : $vuOrder = ["id" => "desc"];
@@ -23,18 +34,39 @@ abstract class CoreRepositoryRequest
 		return $this->find(null, $vuOrder, $vuLimit);
 	}
 	
+	/**
+	 * The function "findOneBy"
+	 *
+	 * @param array $where
+	 * @param array|null $order
+	 * @param array|null $limit
+	 * @return array|$this|null
+	 */
 	final public function findOneBy(array $where, array|null $order = null, array|null $limit = null):  array|self|null
 	{
 		$var = $this->find($where, $order, $limit);
 		return count($var) ? $this->setDatas($var[0]) : null;
 	}
 	
+	/**
+	 * The function "findById"
+	 *
+	 * @param int $id
+	 * @return array|$this|null
+	 */
 	final public function findById(int $id): array|self|null
 	{
 		$var = $this->find(["id" => ["=", $id]]);
 		return count($var) ? $this->setDatas($var[0]) : null;
 	}
 	
+	/**
+	 * The function "findIdCollect"
+	 *
+	 * @param int $id
+	 * @param string $collect
+	 * @return Object
+	 */
 	final public function findIdCollect(int $id, string $collect): Object
 	{
 		$newCollect = new $collect();
@@ -42,6 +74,14 @@ abstract class CoreRepositoryRequest
 		return $newCollect;
 	}
 	
+	/**
+	 * The function "find"
+	 *
+	 * @param array|null $where
+	 * @param array|null $order
+	 * @param array|null $limit
+	 * @return array|null
+	 */
 	final public function find(array|null $where = null, array|null $order = null, array|null $limit = null): ?array
 	{
 		$var = [];
@@ -89,6 +129,13 @@ abstract class CoreRepositoryRequest
 		return null;
 	}
 	
+	/**
+	 * The function "update"
+	 *
+	 * @param int $id
+	 * @param object|array $model
+	 * @return bool
+	 */
 	final public function update(int $id, object|array $model): bool
 	{
 		$champs = [];
@@ -103,12 +150,24 @@ abstract class CoreRepositoryRequest
 		return $req->execute($valeurs);
 	}
 	
+	/**
+	 * The function "delete"
+	 *
+	 * @param int $id
+	 * @return bool
+	 */
 	final public function delete(int $id): bool
 	{
 		$req = $this->connectPDO()->prepare("DELETE FROM " . $this->getTableName() . " WHERE id = ?");
 		return $req->execute([$id]);
 	}
 	
+	/**
+	 * The function "deleteBy"
+	 *
+	 * @param array $where
+	 * @return bool
+	 */
 	final public function deleteBy(array $where): bool
 	{
 		$vuWhere = "";
@@ -125,6 +184,12 @@ abstract class CoreRepositoryRequest
 		return $req->execute($vuWhereBind);
 	}
 	
+	/**
+	 * The function "insert"
+	 *
+	 * @param array $array
+	 * @return $this
+	 */
 	final public function insert(array $array): self
 	{
 		#  List of variables for PDO

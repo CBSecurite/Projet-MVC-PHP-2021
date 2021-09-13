@@ -23,6 +23,9 @@ trait CoreRepositoryTraitTable
 	// List of Getters about variables  //
 	// ########################################################################################################## //
 	
+	/**
+	 * @return string
+	 */
 	final public function getTableId(): string
 	{
 		return (string) self::$tableId;
@@ -32,6 +35,10 @@ trait CoreRepositoryTraitTable
 	// List of Setters about variables //
 	// ########################################################################################################## //
 	
+	/**
+	 * @param int $tableId
+	 * @return $this
+	 */
 	final public function setTableId(int $tableId): self
 	{
 		self::$tableId = (string) $tableId ;
@@ -43,6 +50,8 @@ trait CoreRepositoryTraitTable
 	// ########################################################################################################## //
 	
 	/**
+	 * The function "getTableName"
+	 *
 	 * @return string
 	 */
 	final public function getTableName(): string
@@ -61,6 +70,8 @@ trait CoreRepositoryTraitTable
 	}
 	
 	/**
+	 * The function "getNameClass"
+	 *
 	 * @return string
 	 */
 	final public function getNameClass(): string
@@ -72,6 +83,8 @@ trait CoreRepositoryTraitTable
 	}
 	
 	/**
+	 * The function "getClass"
+	 *
 	 * @return string
 	 */
 	final public function getClass(): string
