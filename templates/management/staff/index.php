@@ -6,14 +6,15 @@
   </head>
   <body>
     <h1>Management - Staff</h1>
+    <hr>
     <nav>
       <a href="/"><button type="button"><== Back Index</button></a>
-      <br>
+      <a href="/<?=LINK_VIEWS_FOLDER; ?>"><button type="button"><== Back</button></a>
     </nav>
     <hr>
     <main>
       <p>
-        <a href="/<?=LINK_VIEWS; ?>/new-staff"><button type="button">New Staff Member</button></a>
+        <a href="/<?=LINK_VIEWS_FOLDER; ?>/new-staff"><button type="button">New Staff Member</button></a>
       </p>
       <table width="750">
         <thead>
@@ -37,8 +38,8 @@
           echo "<td>" . $staff->getEmail() . "</td>";
           echo "<td>" . ($staff->getRightAccess() ? "Open" : "Close") . "</td>";
           echo "<td>" . ($staff->getStatus() ? "Active" : "None") . "</td>";
-          echo "<td align='right'><a href='/" . LINK_VIEWS . "/edit?id=" . $staff->getId() . "'>Edit</a></td>";
-          echo "<td align='right'><a href='/" . LINK_VIEWS . "/delete?id=" . $staff->getId() . "'>Delete</a></td>";
+          echo "<td align='right'><a href='/" . LINK_VIEWS_FOLDER . "/edit?id=" . $staff->getId() . "'>Edit</a></td>";
+          echo "<td align='right'><a href='/" . LINK_VIEWS_FOLDER . "/delete?id=" . $staff->getId() . "'>Delete</a></td>";
           echo "</tr>";
         }
         ?>

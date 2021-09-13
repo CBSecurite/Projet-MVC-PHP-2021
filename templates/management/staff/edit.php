@@ -7,7 +7,8 @@
 <body>
   <h1>Management - Staff - Edit</h1>
   <nav>
-    <a href="/<?=LINK_VIEWS; ?>"><button type="button"><== Back</button></a>
+    <a href="/"><button type="button"><== Back Index</button></a>
+    <a href="/<?=LINK_VIEWS_FOLDER; ?>"><button type="button"><== Back</button></a>
     <br>
   </nav>
   <hr>
@@ -17,7 +18,7 @@
 	  ?>
     <h2>Staff Member <?=$staff->getUsername(); ?></h2>
     <p>
-      <a href="/<?=LINK_VIEWS; ?>/delete?id=<?=$staff->getId(); ?>"><button type="button">Delete Staff <?=$staff->getUsername(); ?></button></a>
+      <a href="/<?=LINK_VIEWS_FOLDER; ?>/delete?id=<?=$staff->getId(); ?>"><button type="button">Delete Staff <?=$staff->getUsername(); ?></button></a>
     </p>
     <table width="700">
       <tr>

@@ -2,6 +2,7 @@
 namespace Core\Route;
 
 use Core\CoreRoute;
+use Core\CoreView;
 
 class CoreRouteController
 {
@@ -10,6 +11,7 @@ class CoreRouteController
 	// ########################################################################################################## //
 	
 	private static CoreRoute $CoreRoute;
+	private static CoreView $CoreView;
 	
 	// ########################################################################################################## //
 	// Constructor //
@@ -29,6 +31,16 @@ class CoreRouteController
 		return self::$CoreRoute;
 	}
 	
+	/**
+	 * The getter function "getView"
+	 *
+	 * @return CoreView
+	 */
+	final public static function getView(): CoreView
+	{
+		return self::$CoreView;
+	}
+	
 	// ########################################################################################################## //
 	// List of Setters about variables //
 	// ########################################################################################################## //
@@ -44,6 +56,17 @@ class CoreRouteController
 		return $this;
 	}
 	
+	/**
+	 * The setter function "setView"
+	 *
+	 * @return $this
+	 */
+	final public function setView(): self
+	{
+		self::$CoreView = new CoreView();
+		return $this;
+	}
+	
 	// ########################################################################################################## //
 	// Liste of another methods //
 	// ########################################################################################################## //
@@ -55,7 +78,17 @@ class CoreRouteController
 	 */
 	final public function route(): CoreRoute
 	{
-		return $this->setRoute()->getRoute();
+		return self::setRoute()->getRoute();
+	}
+	
+	/**
+	 * The function "route"
+	 *
+	 * @return CoreView
+	 */
+	final public function view(): CoreView
+	{
+		return self::setView()->getView();
 	}
 	
 }

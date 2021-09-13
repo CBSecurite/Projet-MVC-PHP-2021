@@ -1,5 +1,6 @@
 <?php
 namespace Core;
+
 use Core\Route\CoreRouteController;
 
 class Kernel extends CoreRouteController
@@ -12,10 +13,10 @@ class Kernel extends CoreRouteController
 	// Constructor //
 	// ########################################################################################################## //
 	
-	public function __construct(string $uri)
+	public function __construct()
 	{
 		# Starting the router
-		$this->route()->startRouting($uri);
+		$this->route()->startRouting();
 	}
 	
 	// ########################################################################################################## //
