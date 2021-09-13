@@ -8,7 +8,6 @@
  - Noyau Kernel : 0.1.0
  - Noyau Core : 0.1.0
  - Noyau App : 0.1.0
- - Mysql BDD : 0.1.0
 
  Information systeme :
  - PHP : 8.0.8
