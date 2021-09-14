@@ -48,7 +48,7 @@ class ManagementStaffController extends CoreRouteOptions
     $render = str_replace("\\", DIRECTORY_SEPARATOR, LINK_VIEWS_FOLDER . "\\index.php");
     $this->render($render, [
     	"staff" => $staffEntity,
-    	"listStaff" => $staffEntity->findAll()
+    	"listStaff" => $staffEntity->findAll(["id" => "asc"])
     ]);
   }
 	
