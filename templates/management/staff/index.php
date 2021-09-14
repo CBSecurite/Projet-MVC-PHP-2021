@@ -29,8 +29,8 @@
         </thead>
         <tbody>
         <?php
-        $staff = $this->getApp("params","staff");
-        $listStaff = $this->getApp("params","listStaff");
+        $staff = $this->App("params","staff");
+        $listStaff = $this->App("params","listStaff");
         foreach ($listStaff as $key => $value){
           $staff->setDatas($value);
           echo "<tr>";

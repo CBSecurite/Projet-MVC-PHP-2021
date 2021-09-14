@@ -1,17 +1,15 @@
 <?php
+	namespace Core\Views;
 	
-	namespace Core;
-	
-	use Core\Route\CoreRouteOptions;
-	
-	class CoreView extends CoreRouteOptions
+	class CoreViews
 	{
 		// ########################################################################################################## //
 		// List of variables //
 		// ########################################################################################################## //
 		
-		protected static array $optionsApp;
-		protected static array $optionsCore;
+		public static $view;
+		public static $optionsApp;
+		public static $optionsCore;
 		
 		// ########################################################################################################## //
 		// Constructor //
@@ -19,30 +17,49 @@
 		
 		public function __construct()
 		{
-			self::$optionsApp["params"] = $this->getApp("");
+			if(self::$view) { include(self::$view); }
 		}
 		
 		// ########################################################################################################## //
 		// List of Getters about variables  //
 		// ########################################################################################################## //
 		
-		final protected function getOptionsApp(): array
+		final public function App(string...$options): mixed
 		{
-			return self::$optionsApp;
+			if(count($options)) {
+				return $this->controlOptions(self::$optionsApp, $options);
+			}
+			return null;
+		}
+		
+		final public function Core(string ...$options): mixed
+		{
+			if(count($options)) {
+				return $this->controlOptions(self::$optionsCore, $options);
+			}
+			return null;
 		}
 		
 		// ########################################################################################################## //
 		// List of Setters about variables //
 		// ########################################################################################################## //
 		
-		private function setOptionsApp(array $optionsApp): self
-		{
-			self::$optionsApp[$optionsApp[0]] = $optionsApp[1];
-			return $this;
-		}
-		
 		// ########################################################################################################## //
 		// Liste of another methods //
 		// ########################################################################################################## //
+		
+		private function controlOptions(array $datas, array $options): mixed
+		{
+			$array = $datas;
+			$valid = 0;
+			for($i = 0; $i < count($options); $i++) {
+				if(isset($array[$options[$i]])) {
+					$array = $array[$options[$i]];
+					$valid++;
+				}
+			}
+			$error = null;
+			return count($options) === $valid ? $array : $error;
+		}
 		
 	}

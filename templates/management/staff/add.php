@@ -108,8 +108,8 @@
                   <option value="" selected="selected"></option>
                   <option disabled><strong>All Roles</strong></option>
                   <?php
-                  $staffRole = $this->getApp("params","staffRole");
-                  $listStaffRole = $this->getApp("params","listStaffRole");
+                  $staffRole = $this->App("params","staffRole");
+                  $listStaffRole = $this->App("params","listStaffRole");
                   foreach($listStaffRole as $key => $value){
                     $staffRole->setDatas($value);
                     echo '<option value="' . $staffRole->getId() . '">' . $staffRole->getName() . '</option>';

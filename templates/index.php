@@ -12,6 +12,8 @@
       <a href="?help=index"><button type="button">Help</button></a>
     </nav>
     <hr>
-    <main></main>
+    <main>
+      </pre>
+    </main>
   </body>
 </html>

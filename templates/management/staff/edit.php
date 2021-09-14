@@ -18,7 +18,7 @@
       <a href="/<?=LINK_VIEWS_FOLDER; ?>"><button type="button"><== Back</button></a>
     </p>
 	  <?php
-		  $staff = $this->getApp("params","staff");
+		  $staff = $this->App("params","staff");
 	  ?>
     <h2>Staff Member <?=$staff->getUsername(); ?></h2>
     <p>

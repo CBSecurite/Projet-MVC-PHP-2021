@@ -1,8 +1,7 @@
 <?php
-namespace Core;
+namespace Core\Route;
 
 use config\RouteConfig;
-use Core\Route\CoreRouteOptions;
 
 class CoreRoute extends CoreRouteOptions
 {

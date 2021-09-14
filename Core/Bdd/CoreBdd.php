@@ -1,51 +1,76 @@
 <?php
-namespace Core;
+namespace Core\Bdd;
 
-use Core\Repository\CoreRepositoryRequest;
+use config\BddConfig;
+use Exception ;
 use PDO;
 
-abstract class CoreRepository extends CoreRepositoryRequest
+class CoreBdd extends BddConfig
 {
-	// ########################################################################################################## //
-	// List of Traits //
-	// ########################################################################################################## //
-	
-	# Date
-	use \Core\Repository\Trait\CoreRepositoryTraitDate;
-	
-	# Table
-	use \Core\Repository\Trait\CoreRepositoryTraitTable;
-	
 	// ########################################################################################################## //
 	// List of variables //
 	// ########################################################################################################## //
 	
+  public static PDO $bdd;
+	
 	// ########################################################################################################## //
 	// Constructor //
 	// ########################################################################################################## //
+ 
+	final public function __construct()
+	{
+	}
 	
 	// ########################################################################################################## //
 	// List of Getters about variables  //
 	// ########################################################################################################## //
 	
+	/**
+	 * The getter function "getBdd"
+	 *
+	 * @return PDO
+	 */
+	final static function getBdd(): PDO
+  {
+    return self::$bdd;
+  }
+	
 	// ########################################################################################################## //
 	// List of Setters about variables //
 	// ########################################################################################################## //
+	
+	/**
+	 * The setter function "setBdd"
+	 *
+	 * @param PDO $bdd
+	 * @return $this
+	 */
+	private function setBdd(PDO $bdd): self
+  {
+	  self::$bdd = $bdd;
+	  return $this;
+  }
 	
 	// ########################################################################################################## //
 	// Liste of another methods //
 	// ########################################################################################################## //
 	
 	/**
-	 * The function "connectPDO"
+	 * The function "start"
 	 *
-	 * @return PDO
+	 * @return string|$this
 	 */
-	final public function connectPDO(): PDO
+	final public function start(): string|self
 	{
-		# Connection to the MySQL datas bases
-		$CoreBdd = new CoreBdd();
-		return $CoreBdd->start()->getBdd();
+		try {
+			$dns = "mysql:host=" . $this::BddHost . ";dbname=" . $this::BddName . ";port=" . $this::BddPort . ";charset=utf8";
+			$bdd = new PDO($dns, $this::BddLogin, $this::BddPassword);
+			$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
+			return $this->setBdd($bdd);
+		}
+		catch (Exception $e) {
+			return "Erreur de connexion a la base de données !";
+		}
 	}
-
+	
 }

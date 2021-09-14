@@ -1,8 +1,7 @@
 <?php
 namespace Core\Route;
 
-use Core\CoreRoute;
-use Core\CoreView;
+use Core\Views\CoreViews;
 
 class CoreRouteController
 {
@@ -11,7 +10,7 @@ class CoreRouteController
 	// ########################################################################################################## //
 	
 	private static CoreRoute $CoreRoute;
-	private static CoreView $CoreView;
+	private static CoreViews $CoreViews;
 	
 	// ########################################################################################################## //
 	// Constructor //
@@ -34,11 +33,11 @@ class CoreRouteController
 	/**
 	 * The getter function "getView"
 	 *
-	 * @return CoreView
+	 * @return CoreViews
 	 */
-	final public static function getView(): CoreView
+	final public static function getView(): CoreViews
 	{
-		return self::$CoreView;
+		return self::$CoreViews;
 	}
 	
 	// ########################################################################################################## //
@@ -63,7 +62,7 @@ class CoreRouteController
 	 */
 	final public function setView(): self
 	{
-		self::$CoreView = new CoreView();
+		self::$CoreViews = new CoreViews();
 		return $this;
 	}
 	
@@ -84,9 +83,9 @@ class CoreRouteController
 	/**
 	 * The function "route"
 	 *
-	 * @return CoreView
+	 * @return CoreViews
 	 */
-	final public function view(): CoreView
+	final public function view(): CoreViews
 	{
 		return self::setView()->getView();
 	}

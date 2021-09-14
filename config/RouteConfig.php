@@ -1,7 +1,7 @@
 <?php
 namespace config;
 
-use Core\CoreRoute;
+use Core\Route\CoreRoute;
 
 class RouteConfig extends CoreRoute
 {

@@ -1,7 +1,7 @@
 <?php
 namespace App\Repository\Staff;
 
-use Core\CoreRepository;
+use Core\Repository\CoreRepository;
 
 class StaffProfileRepository extends CoreRepository
 {

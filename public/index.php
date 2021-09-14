@@ -1,7 +1,6 @@
 <?php
 
 use Core\Kernel;
-	use Core\Route\CoreRouteController;
 
 // ########################################################################################################## //
 // List of defines //
