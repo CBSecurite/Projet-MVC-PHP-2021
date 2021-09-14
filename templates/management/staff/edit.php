@@ -2,22 +2,27 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Management - Staff - Edit</title>
+  <title>Management Staff - Edit</title>
 </head>
 <body>
-  <h1>Management - Staff - Edit</h1>
+  <h1>Management Staff - Edit</h1>
+  <hr>
   <nav>
-    <a href="/<?=LINK_VIEWS; ?>"><button type="button"><== Back</button></a>
+    <a href="/"><button type="button">Index</button></a>
+    <a href="?help=index"><button type="button">Help</button></a>
     <br>
   </nav>
   <hr>
   <main>
+    <p>
+      <a href="/<?=LINK_VIEWS_FOLDER; ?>"><button type="button"><== Back</button></a>
+    </p>
 	  <?php
 		  $staff = $this->getApp("params","staff");
 	  ?>
     <h2>Staff Member <?=$staff->getUsername(); ?></h2>
     <p>
-      <a href="/<?=LINK_VIEWS; ?>/delete?id=<?=$staff->getId(); ?>"><button type="button">Delete Staff <?=$staff->getUsername(); ?></button></a>
+      <a href="/<?=LINK_VIEWS_FOLDER; ?>/delete?id=<?=$staff->getId(); ?>"><button type="button">Delete Staff <?=$staff->getUsername(); ?></button></a>
     </p>
     <table width="700">
       <tr>

@@ -2,16 +2,21 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8">
-    <title>Management - Staff - New Staff Member</title>
+    <title>Management Staff - New Staff Member</title>
   </head>
   <body>
-    <h1>Management - Staff - New Staff Member</h1>
+    <h1>Management Staff - New Staff Member</h1>
+    <hr>
     <nav>
-      <a href="/<?=LINK_VIEWS; ?>"><button type="button"><== Back</button></a>
+      <a href="/"><button type="button">Index</button></a>
+      <a href="?help=index"><button type="button">Help</button></a>
       <br>
     </nav>
     <hr>
     <main>
+      <p>
+        <a href="/<?=LINK_VIEWS_FOLDER; ?>"><button type="button"><== Back</button></a>
+      </p>
       <form method="POST">
         <table width="700">
           <tr>

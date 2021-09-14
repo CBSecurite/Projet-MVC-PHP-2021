@@ -8,7 +8,8 @@
     <h1>Index</h1>
     <hr>
     <nav>
-      <a href="/?help=index"><button type="button">Help Index</button></a>
+      <a href="/management/staff"><button type="button">Management Staff</button></a>
+      <a href="?help=index"><button type="button">Help</button></a>
     </nav>
     <hr>
     <main></main>

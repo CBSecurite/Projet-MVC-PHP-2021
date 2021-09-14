@@ -1,8 +1,8 @@
 <?php
 namespace App\Controller\Management\Staff;
 
-define("LINK_VIEWS", "management\\staff");
-define("LINK_VIEWS_FOLDER", str_replace(" ", "", ucfirst(str_replace("-", " ",LINK_VIEWS))));
+define("LINK_VIEWS", "management/staff");
+define("LINK_VIEWS_FOLDER", str_replace(" ", "", strtolower(LINK_VIEWS)));
 
 use App\Entity\Staff\StaffEntity;
 use App\Entity\Staff\StaffPoleEntity;

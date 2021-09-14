@@ -31,11 +31,16 @@ abstract class CoreRouteRender
 	 */
 	final public function render(string $view, array $viewParams = []): void
 	{
-		$_fileView = str_replace("/", DIRECTORY_SEPARATOR, VIEWS . $view);
+		$_fileView = str_replace("\\", DIRECTORY_SEPARATOR, VIEWS . $view);
 		
 		if(count($viewParams)) { $this->setApp("params", $viewParams); }
 		
-		$this->renderView($_fileView);
+		
+		$this->getApp("REQUEST","help") === "index"
+			? $this->renderView(VIEWS . "help\\index.php")
+			: $this->renderView($_fileView);;
+		
+		
 	}
 	
 	/**

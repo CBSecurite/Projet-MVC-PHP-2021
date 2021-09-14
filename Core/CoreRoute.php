@@ -94,13 +94,13 @@ class CoreRoute extends CoreRouteOptions
 	 *
 	 * @param string $uri
 	 */
-	final public function startRouting(string $uri): void
+	final public function startRouting(): void
 	{
 		# Add Globals App Params
 		$this->setGlobalsParams();
 		
 		# Start router
-		$this->setUri($uri)->setRouteUri();
+		$this->setUri(URI)->setRouteUri();
 		new RouteConfig();
 		$this->controllerRoute();
 	}
