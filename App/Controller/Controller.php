@@ -1,15 +1,16 @@
 <?php
 namespace App\Controller;
 
-use Core\Route\CoreRouteController;
+//use Core\Route\CoreRouteController;
+use Core\Route\CoreRouteOptions;
 
-class Controller extends CoreRouteController
+class Controller extends CoreRouteOptions
 {
 	/**
 	 *   Controller Index
 	 */
 	final public function Index(): void
   {
-	  $this->getRoute()->render("index.php");
+	  $this->render("index.php");
   }
 }

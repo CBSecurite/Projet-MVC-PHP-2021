@@ -49,6 +49,14 @@ interface StaffInterface
 	 */
 	public function getStatus(): int;
 	
+	/**
+	 * The getter function "StaffRoleEntity"
+	 *
+	 * @collection StaffRoleEntity
+	 * @return StaffRoleEntity
+	 */
+	public function getStaffRoleId(): StaffRoleEntity;
+	
 	// ########################################################################################################## //
 	// List of Setters about variables //
 	// ########################################################################################################## //
@@ -100,6 +108,14 @@ interface StaffInterface
 	 * @return $this
 	 */
 	public function setStatus(int $status): self;
+	
+	/**
+	 * The getter function "setStaffRoleId"
+	 *
+	 * @param string $staffRoleId
+	 * @return $this
+	 */
+	public function setStaffRoleId(int $staffRoleId): self;
 	
 	// ########################################################################################################## //
 	// Liste of another methods //

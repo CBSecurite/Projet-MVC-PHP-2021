@@ -51,12 +51,11 @@ abstract class CoreRouteRender
 	 */
 	final public function renderError(int $codeError, string $errorMessage): void
 	{
-		CoreViews::$optionsApp["error"] = [
-			"title" => "Erreur " . $codeError,
-			"message" => $errorMessage,
-			"codeError" => $codeError
-		];
-		$this->renderView(str_replace("\\", DIRECTORY_SEPARATOR, VIEWS . "errors\\" . $codeError . ".php"));
+		$this->setApp("error", "title", "Erreur " . $codeError);
+		$this->setApp("error", "message", $errorMessage);
+		$this->setApp("error", "codeError", $codeError);
+		
+		$this->renderView(str_replace("\\", DIRECTORY_SEPARATOR, VIEWS . "errors.php"));
 	}
 	
 	/**
@@ -77,22 +76,19 @@ abstract class CoreRouteRender
 	 */
 	final public function renderView(string $view): CoreViews
 	{
-		$optionsApp = [
-			"error" => $this->getApp("error"),
-			"user" => $this->getApp("user"),
-			"params" => $this->getApp("params"),
-			"request" => $this->getApp("REQUEST"),
-			"get" => $this->getApp("GET"),
-			"post" => $this->getApp("POST")
-		];
-		foreach ($optionsApp as $key => $value) { CoreViews::$optionsApp[$key] = $value; }
+		# Options App
+		CoreViews::$optionsApp["error"] = $this->getApp("error");
+		CoreViews::$optionsApp["user"] = $this->getApp("user");
+		CoreViews::$optionsApp["params"] = $this->getApp("params");
+		CoreViews::$optionsApp["request"] = $this->getApp("REQUEST");
+		CoreViews::$optionsApp["get"] = $this->getApp("GET");
+		CoreViews::$optionsApp["post"] = $this->getApp("POST");
 		
-		$optionsCore = [
-			"server" => $this->getApp("SERVER"),
-			"parent" => $this
-		];
-		foreach ($optionsCore as $key => $value) { CoreViews::$optionsCore[$key] = $value; }
+		# Options Core
+		CoreViews::$optionsCore["server"] = $this->getApp("SERVER");
+		CoreViews::$optionsCore["parent"] = $this;
 		
+		# View folder
 		CoreViews::$view = $view;
 		
 		return new CoreViews();

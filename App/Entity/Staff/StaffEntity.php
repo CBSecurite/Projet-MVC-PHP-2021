@@ -16,10 +16,7 @@ class StaffEntity extends StaffRepository implements StaffInterface
   private string $password;
   private string $rightAccess;
   private string $status;
-  private int $staffProfileId;
   private int $staffRoleId;
-  private int $staffSalaryId;
-  private int $staffPoleId;
 	
 	// ########################################################################################################## //
 	// Constructor //
@@ -94,59 +91,17 @@ class StaffEntity extends StaffRepository implements StaffInterface
 	}
 	
 	/**
-	 * The getter function "getStaffProfileId"
-	 *
-	 * @collection StaffProfileEntity
-	 * @return Object
-	 */
-	final public function getStaffProfileId(): Object
-	{
-		if($this->staffProfileId) {
-			return $this->findIdCollect($this->staffProfileId, StaffProfileEntity::class);
-		}
-		return new StaffProfileEntity();
-	}
-	
-	/**
-	 * The getter function "getStaffRoleId"
+	 * The getter function "StaffRoleEntity"
 	 *
 	 * @collection StaffRoleEntity
-	 * @return Object
+	 * @return StaffRoleEntity
 	 */
 	final public function getStaffRoleId(): Object
 	{
 		if($this->staffRoleId) {
-			return $this->findIdCollect($this->staffRoleId, StaffRoleEntity::class);
+			return $this->findIdCollect($this->staffPoleId, StaffRoleEntity::class);
 		}
 		return new StaffRoleEntity();
-	}
-
-	/**
-	 * The getter function "getStaffSalaryId"
-	 *
-	 * @collection StaffSalaryEntity
-	 * @return Object
-	 */
-	final public function getStaffSalaryId(): Object
-	{
-		if($this->staffSalaryId) {
-			return $this->findIdCollect($this->staffSalaryId, StaffSalaryEntity::class);
-		}
-		return new StaffSalaryEntity();
-	}
-	
-	/**
-	 * The getter function "getStaffPoleId"
-	 *
-	 * @collection StaffPoleEntity
-	 * @return Object
-	 */
-	final public function getStaffPoleId(): Object
-	{
-		if($this->staffPoleId) {
-			return $this->findIdCollect($this->staffPoleId, StaffPoleEntity::class);
-		}
-		return new StaffPoleEntity();
 	}
 	
 	// ########################################################################################################## //
@@ -226,18 +181,6 @@ class StaffEntity extends StaffRepository implements StaffInterface
 	}
 	
 	/**
-	 * The getter function "setStaffProfileId"
-	 *
-	 * @param string $staffProfileId
-	 * @return $this
-	 */
-	final public function setStaffProfileId(int $staffProfileId): self
-	{
-		$this->staffProfileId = $staffProfileId;
-		return $this;
-	}
-	
-	/**
 	 * The getter function "setStaffRoleId"
 	 *
 	 * @param string $staffRoleId
@@ -248,33 +191,5 @@ class StaffEntity extends StaffRepository implements StaffInterface
 		$this->staffRoleId = $staffRoleId;
 		return $this;
 	}
-	
-	/**
-	 * The getter function "setStaffSalaryId"
-	 *
-	 * @param string $staffSalaryId
-	 * @return $this
-	 */
-	final public function setStaffSalaryId(int $staffSalaryId): self
-	{
-		$this->staffSalaryId = $staffSalaryId;
-		return $this;
-	}
-	
-	/**
-	 * The getter function "setStaffPoleId"
-	 *
-	 * @param string $staffPoleId
-	 * @return $this
-	 */
-	final public function setStaffPoleId(int $staffPoleId): self
-	{
-		$this->staffPoleId = $staffPoleId;
-		return $this;
-	}
-	
-	// ########################################################################################################## //
-	// Liste of another methods //
-	// ########################################################################################################## //
 
 }

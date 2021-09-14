@@ -12,6 +12,7 @@ class StaffProfileEntity extends StaffProfileRepository implements StaffProfileI
 	// ########################################################################################################## //
 	
 	private int $id;
+	private int|null $staffId;
   private string $lastname;
   private string $firstname;
 	private int|null $sex;
@@ -42,6 +43,20 @@ class StaffProfileEntity extends StaffProfileRepository implements StaffProfileI
   }
 	
 	/**
+	 * The getter function "getStaffId"
+	 *
+	 * @collection StaffEntity
+	 * @return StaffEntity
+	 */
+	final public function getStaffId(): StaffEntity
+	{
+		if($this->staffId) {
+			return $this->findIdCollect($this->staffId, StaffEntity::class);
+		}
+		return new StaffEntity();
+	}
+	
+	/**
 	 * The getter function "getLastname"
 	 *
 	 * @return string
@@ -64,7 +79,7 @@ class StaffProfileEntity extends StaffProfileRepository implements StaffProfileI
 	/**
 	 * The getter function "getSex"
 	 *
-	 * @return ?int
+	 * @return int|null
 	 */
 	final public function getSex(): ?int
 	{
@@ -74,7 +89,7 @@ class StaffProfileEntity extends StaffProfileRepository implements StaffProfileI
 	/**
 	 * The getter function "getBirthdate"
 	 *
-	 * @return ?string
+	 * @return string|null
 	 */
 	final public function getBirthdate(): ?string
 	{
@@ -84,7 +99,7 @@ class StaffProfileEntity extends StaffProfileRepository implements StaffProfileI
 	/**
 	 * The getter function "getAddress"
 	 *
-	 * @return ?string
+	 * @return string|null
 	 */
   final public function getAddress(): ?string
   {
@@ -94,7 +109,7 @@ class StaffProfileEntity extends StaffProfileRepository implements StaffProfileI
 	/**
 	 * The getter function "getPostalCode"
 	 *
-	 * @return ?string
+	 * @return string|null
 	 */
   final public function getPostalCode(): ?string
   {
@@ -104,7 +119,7 @@ class StaffProfileEntity extends StaffProfileRepository implements StaffProfileI
 	/**
 	 * The getter function "getCity"
 	 *
-	 * @return ?string
+	 * @return string|null
 	 */
   final public function getCity(): ?string
   {
@@ -114,7 +129,7 @@ class StaffProfileEntity extends StaffProfileRepository implements StaffProfileI
 	/**
 	 * The getter function "getCountry"
 	 *
-	 * @return ?string
+	 * @return string|null
 	 */
   final public function getCountry(): ?string
   {
@@ -136,6 +151,18 @@ class StaffProfileEntity extends StaffProfileRepository implements StaffProfileI
 		$this->id = $id;
 		return $this;
 	}
+	
+	/**
+	 * The setter function "setStaffId"
+	 *
+	 * @param string $staffId
+	 * @return $this
+	 */
+  final public function setStaffId(string $staffId): self
+  {
+    $this->staffId = $staffId;
+    return $this;
+  }
 	
 	/**
 	 * The setter function "setLastname"
@@ -164,7 +191,7 @@ class StaffProfileEntity extends StaffProfileRepository implements StaffProfileI
 	/**
 	 * The setter function "setSex"
 	 *
-	 * @param ?int $sex = 0
+	 * @param int|null
 	 * @return $this
 	 */
 	final public function setSex(?int $sex): self
@@ -176,7 +203,7 @@ class StaffProfileEntity extends StaffProfileRepository implements StaffProfileI
 	/**
 	 * The setter function "setBirthdate"
 	 *
-	 * @param ?string $birthdate
+	 * @param string|null $birthdate
 	 * @return $this
 	 */
 	final public function setBirthdate(?string $birthdate): self
@@ -188,7 +215,7 @@ class StaffProfileEntity extends StaffProfileRepository implements StaffProfileI
 	/**
 	 * The setter function "setAddress"
 	 *
-	 * @param ?string $address
+	 * @param string|null $address
 	 * @return $this
 	 */
   final public function setAddress(?string $address): self
@@ -200,7 +227,7 @@ class StaffProfileEntity extends StaffProfileRepository implements StaffProfileI
 	/**
 	 * The setter function "setPostalCode"
 	 *
-	 * @param ?string $postalCode
+	 * @param string|null $postalCode
 	 * @return $this
 	 */
   final public function setPostalCode(?string $postalCode): self
@@ -212,7 +239,7 @@ class StaffProfileEntity extends StaffProfileRepository implements StaffProfileI
 	/**
 	 * The setter function "setCity"
 	 *
-	 * @param ?string $city
+	 * @param string|null $city
 	 * @return $this
 	 */
   final public function setCity(?string $city): self
@@ -224,7 +251,7 @@ class StaffProfileEntity extends StaffProfileRepository implements StaffProfileI
 	/**
 	 * The setter function "setCountry"
 	 *
-	 * @param ?string $country
+	 * @param string|null $country
 	 * @return $this
 	 */
   final public function setCountry(?string $country): self
@@ -232,20 +259,5 @@ class StaffProfileEntity extends StaffProfileRepository implements StaffProfileI
     $this->country = $country;
     return $this;
   }
-	
-	// ########################################################################################################## //
-	// Liste of another methods //
-	// ########################################################################################################## //
-	
-	/**
-	 * The getter function "getAge"
-	 *
-	 * @return ?string
-	 * @throws Exception
-	 */
-	final public function getAge(): ?string
-	{
-		return $this->dateDiffYear($this->getBirthdate());
-	}
 
 }
