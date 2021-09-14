@@ -122,12 +122,18 @@ class ManagementStaffController extends CoreRouteOptions
   		
 		  # Creating instances of classes
 		  $staff = new StaffEntity();
-		  $find = $staff->findById($requestId);
-		  
-		  if($find) {
+		  $staffProfile = new StaffProfileEntity();
+		
+		  $staffFind = $staff->findById($requestId);
+		  if($staffFind) {
+			
+			  $staffProfile->findOneBy(["staffId" => ["=", $staff->getId()]]);
+//			  print_r($staffProfile->getId());
+			  
 			  # Render the views + render's Params
 			  $this->render($render, [
-				  "staff" => $staff
+				  "staff" => $staff,
+				  "staffProfile" => $staffProfile
 			  ]);
 		  }
 		  else {
@@ -151,15 +157,8 @@ class ManagementStaffController extends CoreRouteOptions
 	  	
 		  $staff = new StaffEntity();
 		  $staff->findById($requestId);
-		  
-		  $staffProfile = $staff->getStaffProfileId();
-		  $staffSalary = $staff->getStaffSalaryId();
-		  $staffPole = $staff->getStaffPoleId();
 			
 		  # Delete All relations of staff
-		  $staffProfile->delete($staffProfile->getId());
-		  $staffSalary->delete($staffSalary->getId());
-		  $staffPole->delete($staffPole->getId());
 		  $staff->delete($staff->getId());
 	  }
 	

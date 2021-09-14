@@ -12,9 +12,9 @@ interface StaffProfileInterface
 	/**
 	 * The getter function "getId"
 	 *
-	 * @return int
+	 * @return int|null
 	 */
-	public function getId(): int;
+	public function getId(): ?int;
 	
 	/**
 	 * The getter function "getStaffId"
@@ -27,16 +27,16 @@ interface StaffProfileInterface
 	/**
 	 * The getter function "getLastname"
 	 *
-	 * @return string
+	 * @return string|null
 	 */
-	public function getLastname(): string;
+	public function getLastname(): ?string;
 	
 	/**
 	 * The getter function "getFirstname"
 	 *
-	 * @return string
+	 * @return string|null
 	 */
-	public function getFirstname(): string;
+	public function getFirstname(): ?string;
 	
 	/**
 	 * The getter function "getSex"

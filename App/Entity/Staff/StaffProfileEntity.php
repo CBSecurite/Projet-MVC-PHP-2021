@@ -11,16 +11,16 @@ class StaffProfileEntity extends StaffProfileRepository implements StaffProfileI
 	// List of variables //
 	// ########################################################################################################## //
 	
-	private int $id;
-	private int|null $staffId;
-  private string $lastname;
-  private string $firstname;
-	private int|null $sex;
-	private string|null $birthdate;
-  private string|null $address;
-  private string|null $postalCode;
-  private string|null $city;
-  private string|null $country;
+	private int|null $id = null;
+	private int|null $staffId = null;
+  private string|null $lastname = null;
+  private string|null $firstname = null;
+	private int|null $sex = null;
+	private string|null $birthdate = null;
+  private string|null $address = null;
+  private string|null $postalCode = null;
+  private string|null $city = null;
+  private string|null $country = null;
 	
 	// ########################################################################################################## //
 	// Constructor //
@@ -35,9 +35,9 @@ class StaffProfileEntity extends StaffProfileRepository implements StaffProfileI
 	/**
 	 * The getter function "getId"
 	 *
-	 * @return int
+	 * @return int|null
 	 */
-  final public function getId(): int
+  final public function getId(): ?int
   {
     return $this->id;
   }
@@ -59,9 +59,9 @@ class StaffProfileEntity extends StaffProfileRepository implements StaffProfileI
 	/**
 	 * The getter function "getLastname"
 	 *
-	 * @return string
+	 * @return string|null
 	 */
-  final public function getLastname(): string
+  final public function getLastname(): ?string
   {
     return $this->lastname;
   }
@@ -69,9 +69,9 @@ class StaffProfileEntity extends StaffProfileRepository implements StaffProfileI
 	/**
 	 * The getter function "getFirstname"
 	 *
-	 * @return string
+	 * @return string|null
 	 */
-	final public function getFirstname(): string
+	final public function getFirstname(): ?string
 	{
 		return $this->firstname;
 	}

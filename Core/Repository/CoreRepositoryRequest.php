@@ -42,10 +42,11 @@ abstract class CoreRepositoryRequest
 	 * @param array|null $limit
 	 * @return array|$this|null
 	 */
-	final public function findOneBy(array $where, array|null $order = null, array|null $limit = null):  array|self|null
+	final public function findOneBy(array $where, array|null $order = null, array|null $limit = null)
 	{
 		$var = $this->find($where, $order, $limit);
-		return count($var) ? $this->setDatas($var[0]) : null;
+		count($var) ? $this->setDatas($var[0]) : null;
+		return $var;
 	}
 	
 	/**
@@ -57,7 +58,8 @@ abstract class CoreRepositoryRequest
 	final public function findById(int $id): array|self|null
 	{
 		$var = $this->find(["id" => ["=", $id]]);
-		return count($var) ? $this->setDatas($var[0]) : null;
+		count($var) ? $this->setDatas($var[0]) : null;
+		return $var;
 	}
 	
 	/**
@@ -118,14 +120,15 @@ abstract class CoreRepositoryRequest
 													($order ? $vuOrder : "") .
 													($limit ? $vuLimit : "")
 								);
-		$res = $req->execute($where ? $vuWhereBind : null);
-		if($res) {
+		
+		if($req->execute($where ? $vuWhereBind : null)) {
 			while($datas = $req->fetch(PDO::FETCH_ASSOC)){
 				array_push($var, $datas);
 			}
 			$req->closeCursor();
 			return $var;
 		}
+		
 		return null;
 	}
 	

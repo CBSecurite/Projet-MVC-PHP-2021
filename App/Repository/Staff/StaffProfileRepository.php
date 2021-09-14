@@ -9,12 +9,12 @@ class StaffProfileRepository extends CoreRepository
 	/**
 	 * The getter function "getAge"
 	 *
-	 * @return ?string
+	 * @return string|null
 	 * @throws Exception
 	 */
 	final public function getAge(): ?string
 	{
-		return $this->dateDiffYear($this->getBirthdate());
+		return ($this->getBirthdate() ? $this->dateDiffYear($this->getBirthdate()) : null);
 	}
 
 }

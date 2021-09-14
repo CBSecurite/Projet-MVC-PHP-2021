@@ -99,7 +99,7 @@ class StaffEntity extends StaffRepository implements StaffInterface
 	final public function getStaffRoleId(): StaffRoleEntity
 	{
 		if($this->staffRoleId) {
-			return $this->findIdCollect($this->staffPoleId, StaffRoleEntity::class);
+			return $this->findIdCollect($this->staffRoleId, StaffRoleEntity::class);
 		}
 		return new StaffRoleEntity();
 	}

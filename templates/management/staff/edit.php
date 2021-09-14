@@ -19,6 +19,7 @@
     </p>
 	  <?php
 		  $staff = $this->App("params","staff");
+		  $staffProfile = $this->App("params","staffProfile");
 	  ?>
     <h2>Staff Member <?=$staff->getUsername(); ?></h2>
     <p>
@@ -49,39 +50,39 @@
           <h3>Profile Informations</h3>
           <p>
             <label for="email">Lastname :</label>
-            <strong><?=$staff->getStaffProfileId()->getLastname(); ?></strong>
+            <strong><?=($staffProfile ? $staffProfile->getLastname() : ""); ?></strong>
           </p>
           <p>
             <label for="email">Firstname :</label>
-            <strong><?=$staff->getStaffProfileId()->getFirstname(); ?></strong>
+            <strong><?=$staffProfile?->getFirstname(); ?></strong>
           </p>
           <p>
             <label for="age">Sex :</label>
-            <strong><?=$staff->getStaffProfileId()->getSex() ? "Woman" : "Man"; ?></strong>
+            <strong><?=$staffProfile?->getSex() ? "Woman" : "Man"; ?></strong>
           </p>
           <p>
             <label for="age">Birthdate :</label>
-            <strong><?=$staff->getStaffProfileId()->getBirthdate(); ?></strong>
+            <strong><?=$staffProfile?->getBirthdate(); ?></strong>
           </p>
           <p>
             <label for="age">Age :</label>
-            <strong><?=$staff->getStaffProfileId()->getAge(); ?> ans</strong>
+            <strong><?=$staffProfile?->getAge(); ?> ans</strong>
           </p>
           <p>
             <label for="age">Address :</label>
-            <p><strong><?=$staff->getStaffProfileId()->getAddress(); ?></strong></p>
+            <p><strong><?=$staffProfile?->getAddress(); ?></strong></p>
           </p>
           <p>
             <label for="age">Postal Code:</label>
-            <strong><?=$staff->getStaffProfileId()->getPostalCode(); ?></strong>
+            <strong><?=$staffProfile?->getPostalCode(); ?></strong>
           </p>
           <p>
             <label for="age">City:</label>
-            <strong><?=$staff->getStaffProfileId()->getCity(); ?></strong>
+            <strong><?=$staffProfile?->getCity(); ?></strong>
           </p>
           <p>
             <label for="age">Country:</label>
-            <strong><?=$staff->getStaffProfileId()->getCountry(); ?></strong>
+            <strong><?=$staffProfile?->getCountry(); ?></strong>
           </p>
         </td>
       </tr>
@@ -96,43 +97,6 @@
             <label for="email">Priority :</label>
             <strong><?=$staff->getStaffRoleId()->getPriority(); ?></strong>
           </p>
-        </td>
-      </tr>
-      <tr>
-        <td valign="top" height="10" colspan="2">
-          <h3>Salary Informations</h3>
-        </td>
-      </tr>
-      <tr>
-        <td valign="top" height="10">
-          <p>
-            <label for="email">Date Entry :</label>
-            <strong><?=$staff->getStaffSalaryId()->getDateEntry(); ?></strong>
-          </p>
-          <p>
-            <label for="email">Salary Base :</label>
-            <strong><?=$staff->getStaffSalaryId()->getSalaryBase(); ?></strong>
-          </p>
-          <p>
-            <label for="email">Net Salary :</label>
-            <strong><?=$staff->getStaffSalaryId()->getNetSalary(); ?></strong>
-          </p>
-          
-        </td>
-        <td valign="top" height="10">
-          <p>
-            <label for="email">Bonus :</label>
-            <strong><?=$staff->getStaffSalaryId()->getBonus(); ?></strong>
-          </p>
-          <p>
-            <label for="email">Penalty :</label>
-            <strong><?=$staff->getStaffSalaryId()->getPenalty(); ?></strong>
-          </p>
-          <p>
-            <label for="email">Seniority Rate :</label>
-            <strong><?=$staff->getStaffSalaryId()->getSeniorityRate(); ?></strong>
-          </p>
-          
         </td>
       </tr>
     </table>

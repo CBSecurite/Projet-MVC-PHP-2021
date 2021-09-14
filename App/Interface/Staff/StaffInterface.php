@@ -12,44 +12,44 @@ interface StaffInterface
 	/**
 	 * The getter function "getId"
 	 *
-	 * @return int
+	 * @return int|null
 	 */
-	public function getId(): int;
+	public function getId(): ?int;
 	
 	/**
 	 * The getter function "getEmail"
 	 *
-	 * @return string
+	 * @return string|null
 	 */
-	public function getEmail(): string;
+	public function getEmail(): ?string;
 	
 	/**
 	 * The getter function "getUsername"
 	 *
-	 * @return string
+	 * @return string|null
 	 */
-	public function getUsername(): string;
+	public function getUsername(): ?string;
 	
 	/**
 	 * The getter function "getPassword"
 	 *
-	 * @return string
+	 * @return string|null
 	 */
-	public function getPassword(): string;
+	public function getPassword(): ?string;
 	
 	/**
 	 * The getter function "getRightAccess"
 	 *
-	 * @return int
+	 * @return int|null
 	 */
-	public function getRightAccess(): int;
+	public function getRightAccess(): ?int;
 	
 	/**
 	 * The getter function "getStatus"
 	 *
-	 * @return int
+	 * @return int|null
 	 */
-	public function getStatus(): int;
+	public function getStatus(): ?int;
 	
 	/**
 	 * The getter function "getStaffRoleId"
