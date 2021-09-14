@@ -1,6 +1,8 @@
 <?php
 namespace App\Interface\Staff;
 
+use App\Entity\Staff\StaffRoleEntity;
+
 interface StaffInterface
 {
 	// ########################################################################################################## //
@@ -50,7 +52,7 @@ interface StaffInterface
 	public function getStatus(): int;
 	
 	/**
-	 * The getter function "StaffRoleEntity"
+	 * The getter function "getStaffRoleId"
 	 *
 	 * @collection StaffRoleEntity
 	 * @return StaffRoleEntity

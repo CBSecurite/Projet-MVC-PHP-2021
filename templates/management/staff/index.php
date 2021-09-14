@@ -16,11 +16,12 @@
       <p>
         <a href="/<?=LINK_VIEWS_FOLDER; ?>/new-staff"><button type="button">New Staff Member</button></a>
       </p>
-      <table width="750">
+      <table width="900">
         <thead>
         <tr>
           <th align="left" width="50">N°</th>
           <th align="left">Email</th>
+          <th align="left" width="120">Role</th>
           <th align="left" width="120">Right Access</th>
           <th align="left" width="100">Status</th>
           <th align="left" width="100"></th>
@@ -36,6 +37,7 @@
           echo "<tr>";
           echo "<td>" . $staff->getId() . "</td>";
           echo "<td>" . $staff->getEmail() . "</td>";
+          echo "<td>" . ($staff->getStaffRoleId() ? $staff->getStaffRoleId()->getName() : null) . "</td>";
           echo "<td>" . ($staff->getRightAccess() ? "Open" : "Close") . "</td>";
           echo "<td>" . ($staff->getStatus() ? "Active" : "None") . "</td>";
           echo "<td align='right'><a href='/" . LINK_VIEWS_FOLDER . "/edit?id=" . $staff->getId() . "'>Edit</a></td>";

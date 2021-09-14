@@ -131,37 +131,6 @@
               </p>
             </td>
           </tr>
-          <tr>
-            <td valign="top" height="10" colspan="2">
-              <h3>Salary Informations</h3>
-            </td>
-          </tr>
-          <tr>
-            <td valign="top" height="10">
-              <p>
-                <label for="staffSalary_DateEntry">Date Entry* :</label>
-                <input type="date" name="staffSalary_DateEntry" id="staffSalary_DateEntry" value="<?=date("Y-m-d"); ?>">
-              </p>
-              <p>
-                <label for="staffSalary_SalaryBase">Salary Base :</label>
-                <input type="text" name="staffSalary_SalaryBase" id="staffSalary_SalaryBase">
-              </p>
-            </td>
-            <td valign="top" height="10">
-              <p>
-                <label for="staffSalary_Bonus">Bonus :</label>
-                <input type="text" name="staffSalary_Bonus" id="staffSalary_Bonus" value="0.000">
-              </p>
-              <p>
-                <label for="staffSalary_Penalty">Penalty :</label>
-                <input type="text" name="staffSalary_Penalty" id="staffSalary_Penalty" value="0.22">
-              </p>
-              <p>
-                <label for="staffSalary_SeniorityRate">Seniority Rate :</label>
-                <input type="text" name="staffSalary_SeniorityRate" id="staffSalary_SeniorityRate" value="0.025">
-              </p>
-            </td>
-          </tr>
         </table>
         <p>
           <button type="submit">Add New Staff Member</button>

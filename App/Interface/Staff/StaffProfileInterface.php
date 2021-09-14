@@ -1,7 +1,7 @@
 <?php
 namespace App\Interface\Staff;
 
-use App\Entity\Staff\StaffProfileEntity;
+use App\Entity\Staff\StaffEntity;
 
 interface StaffProfileInterface
 {

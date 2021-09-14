@@ -38,7 +38,7 @@ interface StaffRoleInterface
 	 * @param int $id
 	 * @return $this
 	 */
-	final public function setId(int $id): self;
+	public function setId(int $id): self;
 	
 	/**
 	 * The setter function "setName"

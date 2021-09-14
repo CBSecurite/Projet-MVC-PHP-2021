@@ -5,10 +5,8 @@ define("LINK_VIEWS", "management/staff");
 define("LINK_VIEWS_FOLDER", str_replace(" ", "", strtolower(LINK_VIEWS)));
 
 use App\Entity\Staff\StaffEntity;
-use App\Entity\Staff\StaffPoleEntity;
 use App\Entity\Staff\StaffProfileEntity;
 use App\Entity\Staff\StaffRoleEntity;
-use App\Entity\Staff\StaffSalaryEntity;
 use Core\Route\CoreRouteOptions;
 
 class ManagementStaffController extends CoreRouteOptions
@@ -99,17 +97,11 @@ class ManagementStaffController extends CoreRouteOptions
 		$staffRole->insert(["id" => ""]);
 		$staffRoleId = $staffRole->getTableId();
 		
-		# Insert in new "StaffSalaryEntity"
-		$staffSalary = new StaffSalaryEntity();
-		$staffSalary->insert(["id" => ""]);
-		$staffSalaryId = $staffSalary->getTableId();
-		
 		# Insert in new Staff Entity
 		$staff = new StaffEntity();
 		$staff->insert([
 			"staffProfileId" => $staffProfileId,
-			"staffRoleId" => $staffRoleId,
-			"staffSalaryId" => $staffSalaryId,
+			"staffRoleId" => $staffRoleId
 		]);
 		$staffId = $staff->getTableId();
 		
