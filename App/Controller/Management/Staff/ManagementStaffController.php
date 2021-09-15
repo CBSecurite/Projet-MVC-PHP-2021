@@ -2,7 +2,7 @@
 namespace App\Controller\Management\Staff;
 
 define("LINK_VIEWS", "management/staff");
-define("LINK_VIEWS_FOLDER", str_replace(" ", "", strtolower(LINK_VIEWS)));
+define("LINK_VIEWS_FOLDER", str_replace(" ", "", strtolower("management/staff")));
 
 use App\Entity\Staff\StaffEntity;
 use App\Entity\Staff\StaffProfileEntity;
@@ -59,11 +59,13 @@ class ManagementStaffController extends CoreRouteOptions
 	final public function staffNew(): void
 	{
 		$staffRole = new StaffRoleEntity();
-		$listStaffRole = $staffRole->findAll(["name" => "asc"]);
+		$listStaffRoleSelect = $staffRole->findAll(["fastSelection" => "desc", "name" => "asc"]);
+		$listStaffRoleAll = $staffRole->findAll(["name" => "asc"]);
 		$render = str_replace("\\", DIRECTORY_SEPARATOR, LINK_VIEWS_FOLDER . "\\add.php");
 		$this->render($render, [
 			"staffRole" => $staffRole,
-			"listStaffRole" => $listStaffRole
+			"listStaffRoleSelect" => $listStaffRoleSelect,
+			"listStaffRoleAll" => $listStaffRoleAll,
 		]);
 	}
 	
@@ -74,37 +76,48 @@ class ManagementStaffController extends CoreRouteOptions
 	final public function staffAdd(): void
 	{
 		$post = $this->getApp("POST");
-		$errors = 0;
-		$postProfile = [];
-		$postRole = [];
-		$postSalary = [];
+		$postStaff = [];
+		$postStaffProfile = [];
+		$postStaffRole = [];
 		
 		foreach ($post as $key => $value)
 		{
-			($key === "username" &&  $value)
-				? array_push($postProfile, ["username" => $value])
-				: $errors++;
+			if(str_starts_with($key, "staff_") && $value) {
+				if($key === "staff_password") {
+					$value = password_hash($value, PASSWORD_ARGON2ID, ["cost" => 10]);
+				}
+				$postStaff[str_replace("staff_", "", $key)] = $value;
+			}
+			if(str_starts_with($key, "staffProfile_") && $value) {
+				$postStaffProfile[str_replace("staffProfile_", "", $key)] = $value;
+			}
+			if(str_starts_with($key, "staffRole_") && $value) {
+				if($this->getApp("POST", "existingRole") === "1" && $key !== "staffRole_staffRoleId") {
+					$postStaffRole[str_replace("staffRole_", "", $key)] = $value;
+				}
+				if($this->getApp("POST", "existingRole") === "0" && $key === "staffRole_staffRoleId") {
+					$postStaff["staffRoleId"] = $value;
+				}
+			}
+			
 		}
-		
+
+		# Insert in new "RoleEntity"
+		if(count($postStaffRole)) {
+			$staffRole = new StaffRoleEntity();
+			$staffRole->insert($postStaffRole);
+			$postStaff["staffRoleId"] = $staffRole->getTableId();
+		}
+
+		# Insert in new Staff Entity
+		$staff = new StaffEntity();
+		$staff->insert($postStaff);
+		$postStaffProfile["staffId"] = $staff->getTableId();
 		
 		# Insert in new "StaffProfileEntity"
 		$staffProfile = new StaffProfileEntity();
-		$staffProfile->insert($postProfile);
-		$staffProfileId = $staffProfile->getTableId();
-		
-		# Insert in new "RoleEntity"
-		$staffRole = new StaffRoleEntity();
-		$staffRole->insert(["id" => ""]);
-		$staffRoleId = $staffRole->getTableId();
-		
-		# Insert in new Staff Entity
-		$staff = new StaffEntity();
-		$staff->insert([
-			"staffProfileId" => $staffProfileId,
-			"staffRoleId" => $staffRoleId
-		]);
-		$staffId = $staff->getTableId();
-		
+		$staffProfile->insert($postStaffProfile);
+
 		$this->redirect("/" . LINK_VIEWS);
 	}
 	

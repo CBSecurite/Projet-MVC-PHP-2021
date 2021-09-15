@@ -28,6 +28,13 @@ interface StaffRoleInterface
 	 */
 	public function getPriority(): int;
 	
+	/**
+	 * The getter function "getFastSelection"
+	 *
+	 * @return bool
+	 */
+	public function getFastSelection(): bool;
+	
 	// ########################################################################################################## //
 	// List of Setters about variables //
 	// ########################################################################################################## //
@@ -55,6 +62,14 @@ interface StaffRoleInterface
 	 * @return $this
 	 */
 	public function setPriority(int $priority): self;
+	
+	/**
+	 * The setter function "setFastSelection"
+	 *
+	 * @param bool $fastSelection
+	 * @return $this
+	 */
+	public function setFastSelection(bool $fastSelection): self;
 	
 	// ########################################################################################################## //
 	// Liste of another methods //

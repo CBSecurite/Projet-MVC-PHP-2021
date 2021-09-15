@@ -97,6 +97,10 @@
             <label for="email">Priority :</label>
             <strong><?=$staff->getStaffRoleId()->getPriority(); ?></strong>
           </p>
+          <p>
+            <label for="email">Fast Selection :</label>
+            <strong><?=($staff->getStaffRoleId()->getFastSelection() ? "Yes" : "No"); ?></strong>
+          </p>
         </td>
       </tr>
     </table>

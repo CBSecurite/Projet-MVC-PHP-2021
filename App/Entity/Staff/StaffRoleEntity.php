@@ -57,6 +57,16 @@ class StaffRoleEntity extends StaffRoleRepository implements StaffRoleInterface
     return $this->priority;
   }
 	
+	/**
+	 * The getter function "getFastSelection"
+	 *
+	 * @return bool
+	 */
+  final public function getFastSelection(): bool
+  {
+    return $this->fastSelection;
+  }
+	
 	// ########################################################################################################## //
 	// List of Setters about variables //
 	// ########################################################################################################## //
@@ -94,6 +104,18 @@ class StaffRoleEntity extends StaffRoleRepository implements StaffRoleInterface
   final public function setPriority(int $priority): self
   {
     $this->priority = $priority;
+    return $this;
+  }
+	
+	/**
+	 * The setter function "setFastSelection"
+	 *
+	 * @param bool $fastSelection
+	 * @return $this
+	 */
+  final public function setFastSelection(bool $fastSelection): self
+  {
+    $this->fastSelection = $fastSelection;
     return $this;
   }
 	

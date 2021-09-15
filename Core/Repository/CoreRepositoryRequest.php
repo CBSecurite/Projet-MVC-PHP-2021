@@ -25,13 +25,13 @@ abstract class CoreRepositoryRequest
 	 *
 	 * @param array|null $order
 	 * @param array|null $limit
-	 * @return array
+	 * @return array|null
 	 */
-	final public function findAll(array|null $order = null, array|null $limit = null):  array
+	final public function findAll(array|null $order = null, array|null $limit = null):  ?array
 	{
 		$order ? $vuOrder = $order : $vuOrder = ["id" => "desc"];
 		$limit ? $vuLimit = $limit : $vuLimit = null;
-		return $this->find(null, $vuOrder, $vuLimit);
+		return $this->find(null , $vuOrder, $vuLimit);
 	}
 	
 	/**
@@ -42,10 +42,10 @@ abstract class CoreRepositoryRequest
 	 * @param array|null $limit
 	 * @return array|$this|null
 	 */
-	final public function findOneBy(array $where, array|null $order = null, array|null $limit = null)
+	final public function findOneBy(array $where, array|null $order = null, array|null $limit = null): array|self|null
 	{
 		$var = $this->find($where, $order, $limit);
-		count($var) ? $this->setDatas($var[0]) : null;
+		(count($var) ? $this->setDatas($var[0]) : null);
 		return $var;
 	}
 	
@@ -58,7 +58,7 @@ abstract class CoreRepositoryRequest
 	final public function findById(int $id): array|self|null
 	{
 		$var = $this->find(["id" => ["=", $id]]);
-		count($var) ? $this->setDatas($var[0]) : null;
+		(count($var) ? $this->setDatas($var[0]) : null);
 		return $var;
 	}
 	
@@ -92,9 +92,9 @@ abstract class CoreRepositoryRequest
 		$vuOrder = "";
 		$vuLimit = "";
 		if($where){
+			$g = 0;
+			$vuWhere = " WHERE ";
 			foreach($where as $k => $v){
-				$g = 0;
-				$vuWhere = " WHERE ";
 				if($g > 0){ $vuWhere .= " AND "; }
 				$vuWhere .= $k . " " . $v[0] . " ?";
 				$vuWhereBind[] = $v[1];
@@ -103,9 +103,9 @@ abstract class CoreRepositoryRequest
 		}
 		if($order){
 			$h = 0;
+			$vuOrder = " ORDER BY ";
 			foreach($order as $k => $v){
-				if($h === 0){ $vuOrder = " ORDER BY "; }
-				if($h > 0){ $vuOrder = ", "; }
+				if($h > 0){ $vuOrder .= ", "; }
 				$vuOrder .= $k . " " . $v;
 				$h++;
 			}
@@ -113,6 +113,7 @@ abstract class CoreRepositoryRequest
 		if($limit){
 			$vuLimit = " LIMIT " . $limit[0] . ", " . $limit[1];
 		}
+		
 		$req = $this->connectPDO()
 								->prepare("SELECT * FROM " .
 													$this->getTableName() .
@@ -121,7 +122,7 @@ abstract class CoreRepositoryRequest
 													($limit ? $vuLimit : "")
 								);
 		
-		if($req->execute($where ? $vuWhereBind : null)) {
+		if($req->execute(count($vuWhereBind) ? $vuWhereBind : null)) {
 			while($datas = $req->fetch(PDO::FETCH_ASSOC)){
 				array_push($var, $datas);
 			}
